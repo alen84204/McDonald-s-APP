@@ -28,7 +28,7 @@ class McDonald(object):
         # Request to get a lottery
         self.respones = requests.post('https://api1.mcddailyapp.com/lottery/get_item', json = self.json).text
 
-        # If you don't like to have the return value which lottery event , you can delete all the code below
+        # If you don't like to have the return value which lottery event, you can delete all the code below
 
         # Convert string to dictionary
         """self.respones = eval(self.respones)
@@ -49,7 +49,7 @@ class McDonald(object):
         count = self.respones.count('coupon_id') # Count the number of coupons
         self.respones = eval(self.respones)      # Convert string to dictionary
 
-        # Every coupons are going to be checked the status is unused and not expired
+        # Check the status of the coupons to make sure that they are not used or expired
         for value in range(count):
             status = self.respones['results']['coupons'][value]['status']
             redeem_end_datetime = self.respones['results']['coupons'][value]['object_info']['redeem_end_datetime']
@@ -101,7 +101,7 @@ class McDonald(object):
         else:
             bool = input('Make sure you want to get a lottery ? (y/n) ')
 
-            # If bool is yes , get a lottery
+            # If bool is yes, get a lottery
             if bool == 'y' or bool == 'yes':
 
                 # Get the 6 sticker ids
@@ -121,7 +121,7 @@ class McDonald(object):
                 print('You win a coupon !\n')
                 print(coupon)
 
-    # Clear some characters are matched by Regular Expression
+    # Clear characters are matched by Regular Expression
     def Re(self, coupon):
         coupon = re.sub(r'鷄', '雞', coupon)
         coupon = re.sub(r'\(G.*\)|\(S.*\)|_.*|\(新.*', '', coupon)
