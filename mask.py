@@ -7,17 +7,18 @@ class Mask(object):
 
     def __init__(self, account, password):
         super(Mask, self).__init__()
-        self.paramString = account + password                              # Just Username + Password
+        self.paramString = account + password                              # Username + Password
         self.account = account                                             # Username
         self.password = password                                           # Password
         self.access_token = ""                                             # Token
         self.str1 = datetime.strftime(datetime.now(), '%Y/%m/%d %H:%M:%S') # Device Time
         self.str2 = '2.2.0'                                                # App Version
         self.str3 = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S')      # Call time
+        # You may want to change these accordingly
         self.ModelId = 'MIX 3'                                             # Model ID
         self.OsVersion = '9'                                               # Android OS Version
         self.Platform = 'Android'                                          # Platform
-        self.DeviceUuid = 'device_uuid'                                    # Device Uuid
+        self.DeviceUuid = 'device_uuid'                                    # Device UUID; can be any string
         self.OrderNo = self.DeviceUuid + self.str3                         # Order No
         self.cardNo = 'cardNo'                                             # Card NO
 
@@ -104,7 +105,7 @@ def Main():
     Username = input('Username : ')
     Password = input('Password : ')
 
-    # Login and get the imformation
+    # Login and print login information
     Account = Mask(Username, Password)
     list = Account.Login()
 
@@ -114,14 +115,14 @@ def Main():
     print('Username     : ' + list['results']['member_info']['name']['last_name'] + list['results']['member_info']['name']['first_name'])
     print('Token        : ' + list['results']['member_info']['access_token'])
 
-# Card imformation example
+# Card information example
 def Card():
 
     # Login and get the token
     Account = Mask('Username', 'Password')
     Account.Login()
 
-    # Get the card imformation
+    # Get the card information
     list = Account.CardIM()
 
     # Print the results
