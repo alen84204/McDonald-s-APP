@@ -114,7 +114,11 @@ def Main():
     print('Login status : ' + list['rm'])
     print('Username     : ' + list['results']['member_info']['name']['last_name'] + list['results']['member_info']['name']['first_name'])
     print('Token        : ' + list['results']['member_info']['access_token'])
-
+    if list['rm'] == '帳號密碼錯誤，請重新輸入':
+        print('\n 請重新執行程式已取得Token。')
+    else:
+        print("請複製Token。")
+        
 # Card information example
 def Card():
 
@@ -132,3 +136,4 @@ def Card():
 
 if __name__ == '__main__':
     Main()
+    input()
